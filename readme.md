@@ -1,7 +1,5 @@
 # blinkAlert
 
-### Desligado por default
-
 ### O blink ativa quando quando o gancho mover
 
     * BlinkSpeed: 1
@@ -11,3 +9,12 @@
 ### O blink ativa quando o operador esta sem EPI
 
     * BlinkSpeed: 0.35
+
+# SoudAlert
+
+### Dois tipos de alerta
+
+    * SoundAlert: 1
+      * Som constante
+    * SoundAlert: 2
+      * Som Alternado
