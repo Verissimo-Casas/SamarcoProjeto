@@ -1,15 +1,24 @@
 import RPi.GPIO as GPIO
 import time
 
+PortSoud = 23
+
 class SoudAlert:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-        GPIO.setup(18, GPIO.OUT)
-        print("Sound Alert initialized")
+        GPIO.setup(PortSoud, GPIO.OUT)
 
-    def alert(self):
+    def soundConstant(self):
         print("Sound Alert")
-        GPIO.output(18, GPIO.HIGH)
+        GPIO.output(PortSoud, GPIO.HIGH)
         time.sleep(1)
-        GPIO.output(18, GPIO.LOW)
+        GPIO.output(PortSoud, GPIO.LOW)
+
+
+    def soundAlternated(self):
+        print("Sound Alert")
+        GPIO.output(PortSoud, GPIO.HIGH)
+        time.sleep(0.50)
+        GPIO.output(PortSoud, GPIO.LOW)
+        time.sleep(0.50)

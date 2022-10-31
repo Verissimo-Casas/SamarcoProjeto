@@ -1,4 +1,3 @@
-from ast import Try
 import Jetson.GPIO as GPIO
 
 
@@ -8,9 +7,8 @@ GPIO.setup(7, GPIO.OUT)
 
 class BlinkAlert:
     def __init__(self):
-        self.blinkPico = 0.35
-        self.blinkEpiAlert = False
-        self.blinkScale = 0
+        self.epiValidation = False
+        self.objectDetection = False
 
     def blinkDefault(self):
         GPIO.output(7, GPIO.HIGH)
@@ -24,19 +22,26 @@ class BlinkAlert:
         GPIO.output(7, GPIO.LOW)
         time.sleep(0.35)
 
-    def craneMoveAler(self, craneMove, blinkDefault):
-        try:
-            if craneMove == True:
-                blinkDefault()
-        finally:
+    def blinkScale(self, rangeObject):
+        
+        while rangeObject >= 0.35:
+            GPIO.output(7, GPIO.HIGH)
+            time.sleep(rangeObject)
+            GPIO.output(7, GPIO.LOW)
+            time.sleep(rangeObject)
 
-    def dangerZoneAlert(self, dangerZone):
-        if dangerZone == True:
+
+    def dangerZoneAlert(self, blinkDefault, dangerZone, objectDetection, blinkScale):
+        while dangerZone == True:
             blinkDefault()
-        else:
-            GPIO.cleanup()
+
+        if objectDetection:
+            blinkScale()
+
+
+
     def blinkEpiAlert(self, epiValidation, blinkPico):
-        if epiValidation == False:
+        if epiValidation:
             blinkPico()
         else:
             GPIO.cleanup()
